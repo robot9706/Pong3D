@@ -1,0 +1,565 @@
+# depslib dependency file v1.0
+1431803669 source:d:\code_blocks_projects\pong3d\main.cpp
+	<iostream>
+	<Pong3D.h>
+	<fstream>
+	<cstdlib>
+	<time.h>
+
+1431688746 source:d:\code_blocks_projects\pong3d\src\gfx.cpp
+	"GFX.h"
+	<SDL.h>
+	<SDL_image.h>
+	<glew.h>
+	<windows.h>
+	<iostream>
+
+1431688638 d:\code_blocks_projects\pong3d\include\gfx.h
+	<string>
+	<SDL.h>
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1410207711 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\begin_code.h
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\close_code.h
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940796 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1394940797 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1431715715 source:d:\code_blocks_projects\pong3d\src\pong3d.cpp
+	"Pong3D.h"
+	<SDL.h>
+	<glew.h>
+	<Keyboard.h>
+	<iostream>
+	<SpriteBatch.h>
+	<GameState.h>
+	<LoadingState.h>
+	<Mouse.h>
+
+1431697764 d:\code_blocks_projects\pong3d\include\pong3d.h
+	<GFX.h>
+	<Game.h>
+
+1407808532 d:\code_blocks_projects\pong3d\dlls\glew\include\gl\glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<Availability.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1431624133 source:d:\code_blocks_projects\pong3d\src\keyboard.cpp
+	"Keyboard.h"
+	<SDL.h>
+
+1431624130 d:\code_blocks_projects\pong3d\include\keyboard.h
+	<SDL.h>
+
+1431627992 source:d:\code_blocks_projects\pong3d\src\gamestate.cpp
+	"GameState.h"
+	<Pong3D.h>
+	<iostream>
+
+1431628119 d:\code_blocks_projects\pong3d\include\gamestate.h
+
+1431679327 source:d:\code_blocks_projects\pong3d\src\loadingstate.cpp
+	"LoadingState.h"
+	<iostream>
+	<SpriteBatch.h>
+	<Texture2D.h>
+
+1431681372 d:\code_blocks_projects\pong3d\include\loadingstate.h
+	<GameState.h>
+	<Pong3D.h>
+	<Texture2D.h>
+
+1431700831 source:d:\code_blocks_projects\pong3d\src\spritebatch.cpp
+	"SpriteBatch.h"
+	<glew.h>
+	<Pong3D.h>
+	<Matrix4.h>
+	<iostream>
+	<glm/vec3.hpp>
+	<glm/mat4x4.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+
+1431690182 d:\code_blocks_projects\pong3d\include\spritebatch.h
+	<string>
+	<Shader.h>
+	<glm/mat4x4.hpp>
+	<Texture2D.h>
+
+1431695921 source:d:\code_blocks_projects\pong3d\src\shader.cpp
+	"Shader.h"
+	<string>
+	<glew.h>
+	<vector>
+	<iostream>
+	<glm/gtc/type_ptr.hpp>
+	<glm/mat4x4.hpp>
+
+1431692138 d:\code_blocks_projects\pong3d\include\shader.h
+	<string>
+	<glm/mat4x4.hpp>
+
+1431636391 source:d:\code_blocks_projects\pong3d\src\matrix4.cpp
+	"Matrix4.h"
+	<cmath>
+
+1431633759 d:\code_blocks_projects\pong3d\include\matrix4.h
+
+1431687422 source:d:\code_blocks_projects\pong3d\src\texture2d.cpp
+	"Texture2D.h"
+	<glew.h>
+	<SDL.h>
+	<SDL_image.h>
+	<iostream>
+	<string>
+
+1431677636 d:\code_blocks_projects\pong3d\include\texture2d.h
+	<string>
+
+1376159942 d:\code_blocks_projects\pong3d\dlls\sdl\sdl2_image-2.0.0\i686-w64-mingw32\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1432068183 d:\code_blocks_projects\pong3d\include\game.h
+	<Texture2D.h>
+	<SpriteBatch.h>
+	<Shader.h>
+	<string>
+	<vector>
+	<BB.h>
+	<Paddle.h>
+	<Ball.h>
+	<Powerup.h>
+
+1432068361 source:d:\code_blocks_projects\pong3d\src\game.cpp
+	"Game.h"
+	<iostream>
+	<Pong3D.h>
+	<cmath>
+	<Mouse.h>
+	<Keyboard.h>
+	<PlaneRenderer.h>
+	<string>
+	<SphereRenderer.h>
+	<CubeRenderer.h>
+	<UVPlane.h>
+	<UVCubeRenderer.h>
+	<glm/vec3.hpp>
+	<glm/mat4x4.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	<glew.h>
+
+1431688721 source:d:\code_blocks_projects\pong3d\src\mouse.cpp
+	"Mouse.h"
+
+1431688686 d:\code_blocks_projects\pong3d\include\mouse.h
+
+1431801401 source:d:\code_blocks_projects\pong3d\src\planerenderer.cpp
+	"PlaneRenderer.h"
+	<glew.h>
+	<Pong3D.h>
+	<iostream>
+
+1431693773 d:\code_blocks_projects\pong3d\include\planerenderer.h
+
+1431873804 source:d:\code_blocks_projects\pong3d\src\bb.cpp
+	"BB.h"
+	<glm/mat4x4.hpp>
+	<glm/vec3.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<cmath>
+	<iostream>
+
+1431873792 d:\code_blocks_projects\pong3d\include\bb.h
+	<glm/mat4x4.hpp>
+
+1431697758 source:d:\code_blocks_projects\pong3d\src\cuberenderer.cpp
+	"CubeRenderer.h"
+	<glew.h>
+	<Pong3D.h>
+	<iostream>
+
+1431693771 d:\code_blocks_projects\pong3d\include\cuberenderer.h
+
+1431878522 source:d:\code_blocks_projects\pong3d\src\paddle.cpp
+	"Paddle.h"
+	<Keyboard.h>
+	<Pong3D.h>
+	<cmath>
+	<Ball.h>
+	<iostream>
+
+1431878300 d:\code_blocks_projects\pong3d\include\paddle.h
+	<BB.h>
+	<Game.h>
+
+1431881997 d:\code_blocks_projects\pong3d\include\ball.h
+	<BB.h>
+	<Game.h>
+
+1432068232 source:d:\code_blocks_projects\pong3d\src\ball.cpp
+	"Ball.h"
+	<Game.h>
+	<Pong3D.h>
+	<cmath>
+	<algorithm>
+	<Powerup.h>
+	<iostream>
+
+1431801320 d:\code_blocks_projects\pong3d\include\uvplane.h
+
+1431802432 source:d:\code_blocks_projects\pong3d\src\uvplane.cpp
+	"UVPlane.h"
+	<glew.h>
+	<Pong3D.h>
+	<iostream>
+
+1431872148 source:d:\code_blocks_projects\pong3d\src\uvcuberenderer.cpp
+	"UVCubeRenderer.h"
+	<glew.h>
+	<Pong3D.h>
+	<iostream>
+
+1431872146 d:\code_blocks_projects\pong3d\include\uvcuberenderer.h
+
+1431883092 d:\code_blocks_projects\pong3d\include\powerup.h
+	<BB.h>
+	<Game.h>
+	<Ball.h>
+
+1431884725 source:d:\code_blocks_projects\pong3d\src\powerup.cpp
+	"Powerup.h"
+	<Pong3D.h>
+	<algorithm>
+	<Paddle.h>
+	<glm/vec3.hpp>
+	<glm/gtx/rotate_vector.hpp>
+	<iostream>
+
+1432068302 source:d:\code_blocks_projects\pong3d\src\sphererenderer.cpp
+	"SphereRenderer.h"
+	<glew.h>
+	<Pong3D.h>
+	<cmath>
+	<iostream>
+
+1432068207 d:\code_blocks_projects\pong3d\include\sphererenderer.h
+

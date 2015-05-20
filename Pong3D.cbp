@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Pong3D" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Pong3D" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add directory="DLLs/glew/include/GL" />
+					<Add directory="include" />
+					<Add directory="DLLs/SDL/SDL2-2.0.3/i686-w64-mingw32/include/SDL2" />
+					<Add directory="DLLs/glm" />
+					<Add directory="DLLs/SDL/SDL2_image-2.0.0/i686-w64-mingw32/include/SDL2" />
+				</Compiler>
+				<Linker>
+					<Add option="-lmingw32 -lSDL2main -lSDL2" />
+					<Add option="-lglew32s -lglew32mxs -lopengl32 -lSDL2_image" />
+					<Add library="glew32s" />
+					<Add library="glew32mxs" />
+					<Add library="opengl32" />
+					<Add library="SDL2" />
+					<Add library="SDL2_image" />
+					<Add directory="DLLs/glew/lib/Release/Win32" />
+					<Add directory="DLLs/SDL/SDL2-2.0.3/i686-w64-mingw32/lib" />
+					<Add directory="DLLs/SDL/SDL2_image-2.0.0/i686-w64-mingw32/lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Pong3D" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="include/BB.h" />
+		<Unit filename="include/Ball.h" />
+		<Unit filename="include/CubeRenderer.h" />
+		<Unit filename="include/GFX.h" />
+		<Unit filename="include/Game.h" />
+		<Unit filename="include/Keyboard.h" />
+		<Unit filename="include/Mouse.h" />
+		<Unit filename="include/Paddle.h" />
+		<Unit filename="include/PlaneRenderer.h" />
+		<Unit filename="include/Pong3D.h" />
+		<Unit filename="include/Powerup.h" />
+		<Unit filename="include/Shader.h" />
+		<Unit filename="include/SphereRenderer.h" />
+		<Unit filename="include/SpriteBatch.h" />
+		<Unit filename="include/Texture2D.h" />
+		<Unit filename="include/UVPlane.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/BB.cpp" />
+		<Unit filename="src/Ball.cpp" />
+		<Unit filename="src/CubeRenderer.cpp" />
+		<Unit filename="src/GFX.cpp" />
+		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/Keyboard.cpp" />
+		<Unit filename="src/Mouse.cpp" />
+		<Unit filename="src/Paddle.cpp" />
+		<Unit filename="src/PlaneRenderer.cpp" />
+		<Unit filename="src/Pong3D.cpp" />
+		<Unit filename="src/Powerup.cpp" />
+		<Unit filename="src/Shader.cpp" />
+		<Unit filename="src/SphereRenderer.cpp" />
+		<Unit filename="src/SpriteBatch.cpp" />
+		<Unit filename="src/Texture2D.cpp" />
+		<Unit filename="src/UVPlane.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
