@@ -10,9 +10,6 @@
 #include <Powerup.h>
 #include <SoundManager.h>
 
-#include <iostream>
-using  namespace std;
-
 Ball::Ball(float s, float y)
 {
     X = 0;

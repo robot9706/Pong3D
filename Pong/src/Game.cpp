@@ -37,7 +37,7 @@ string Game::DiffuseColorVS=
 "void main()"
 "{"
 "   gl_Position = PV * W * vec4(vPos, 1);"
-"   DiffuseValue = min(1.0, max(0.0, dot(normalize(LD), vNorm)) + 0.65);"
+"   DiffuseValue = min(1.0, max(0.0, dot(normalize(LD), vNorm)) + 0.4);"
 "}";
 
 string Game::DiffuseColorFS =
@@ -63,7 +63,7 @@ string Game::DiffuseTextureVS=
 "{"
 "   UV = inUV;"
 "   gl_Position = PV * W * vec4(vPos, 1);"
-"   DiffuseValue = min(1.0, max(0.0, dot(normalize(LD), vNorm)) + 0.65);"
+"   DiffuseValue = min(1.0, max(0.0, dot(normalize(LD), vNorm)) + 0.4);"
 "}";
 
 string Game::DiffuseTextureFS =
@@ -118,6 +118,7 @@ float Game::MapSize = 6.0f;
 float Game::BasePadSize = 0.75f;
 float Game::BaseBallSize = 0.25f;
 float Game::BaseBallSpeed = 7.5f;
+float Game::BaseCameraRotationSpeed = 10.0f;
 
 Game::Game(Pong3D* p)
 {
@@ -239,9 +240,9 @@ Game::Game(Pong3D* p)
         LoadTextureMem(&_numbers[x], numz[x]);
     }
 
-    DataBlock pws[] = {BiggerPad_png,SmallerPad_png,FasterBall_png,SlowerBall_png,DoubleBall_png};
-    _powerupImages = new Texture2D[5];
-    for(int x = 0;x<5;x++){
+    DataBlock pws[] = {BiggerPad_png,SmallerPad_png,FasterBall_png,SlowerBall_png,DoubleBall_png,SwapKeys_png,RotateCamera_png,StopCameraRotate_png};
+    _powerupImages = new Texture2D[(int)PowerupType::TypeMax];
+    for(int x = 0;x<(int)PowerupType::TypeMax;x++){
         LoadTextureMem(&_powerupImages[x], pws[x]);
     }
 
@@ -250,6 +251,8 @@ Game::Game(Pong3D* p)
         Pong3D::GlobalError = true;
         cout << "Hiba az égbolt betöltése közben!" << endl;
     }
+
+    SwapButtons = false;
 
     menuX = (1280 / 2 - _menuBG->Width / 2);
     menuY = (720 / 2 - _menuBG->Height / 2 + 720 / 10);
@@ -303,6 +306,9 @@ Game::Game(Pong3D* p)
     UVPlane::Init();
     SphereRenderer::Init();
 
+    glm::vec3 lightDir = glm::vec3(-0.25f,0.5f,0.75f);
+    lightDir = glm::normalize(lightDir);
+
     //Diffúz szín shader
     _diffuseColorShader = new Shader();
     if(!_diffuseColorShader->Load(DiffuseColorVS, DiffuseColorFS)){
@@ -318,7 +324,7 @@ Game::Game(Pong3D* p)
     _difPV = _diffuseColorShader->GetUniform("PV");
     _difW = _diffuseColorShader->GetUniform("W");
     unsigned int ldUniform = _diffuseColorShader->GetUniform("LD");
-    _diffuseColorShader->SetVector3(ldUniform, 0, 1, -1);
+    _diffuseColorShader->SetVector3(ldUniform, lightDir.x, lightDir.y, lightDir.z);
 
     //Diffúz textúra shader
     _diffuseTextureShader = new Shader();
@@ -337,7 +343,7 @@ Game::Game(Pong3D* p)
     _difTexPV = _diffuseTextureShader->GetUniform("PV");
     _difTexW = _diffuseTextureShader->GetUniform("W");
     ldUniform = _diffuseTextureShader->GetUniform("LD");
-    _diffuseTextureShader->SetVector3(ldUniform, 0, 1, -1);
+    _diffuseTextureShader->SetVector3(ldUniform, lightDir.x, lightDir.y, lightDir.z);
 
     //Diffúz textúra shader #2
     _diffuseTextureShader2 = new Shader();
@@ -356,7 +362,7 @@ Game::Game(Pong3D* p)
     _difTexPV2 = _diffuseTextureShader2->GetUniform("PV");
     _difTexW2 = _diffuseTextureShader2->GetUniform("W");
     ldUniform = _diffuseTextureShader2->GetUniform("LD");
-    _diffuseTextureShader2->SetVector3(ldUniform, 0, 1, -1);
+    _diffuseTextureShader2->SetVector3(ldUniform, lightDir.x, lightDir.y, lightDir.z);
 
     //Égbolt séder
     _skyboxShader = new Shader();
@@ -416,129 +422,14 @@ Game::~Game()
         delete b;
 }
 
-void Game::BuildMap(int pc)
-{
-    float ms = MapSize;
-
-    float lineL = MapSize - wallSize - cornerSize;
-
-    mapOffsetX = 0.0f;
-
-    switch(pc){
-    case 4:
-        {
-            Map[0]->SetAnimScale(1.0f); //Felsö fal
-            Map[1]->SetAnimScale(1.0f); //Alsó fal
-            Map[2]->SetAnimScale(1.0f); //Jobb nagy fal
-            Map[3]->SetAnimScale(1.0f); //Bal nagy fal
-
-            Map[4]->SetAnimScale(1.0f); //Jobb felsö sarok
-            Map[5]->SetAnimScale(1.0f); //Bal felsö sarok
-            Map[6]->SetAnimScale(1.0f); //Jobb alsó sarok
-            Map[7]->SetAnimScale(1.0f); //Bal alsó sarok
-
-            Map[8]->SetAnimScale(0.0f); //Felsö kis fal
-            Map[9]->SetAnimScale(0.0f); //Alsó kis fal
-            Map[10]->SetAnimScale(0.0f); //Jobb kis fal
-            Map[11]->SetAnimScale(0.0f); //Bal kis fal
-
-            Map[12]->SetAnimScale(0.0f); //Jobb fura fal
-            Map[13]->SetAnimScale(0.0f); //Bal fura fal
-            Map[14]->SetAnimScale(0.0f); //Alsó fura fal
-
-            mapRenderX = MapSize;
-            mapRenderZ = MapSize;
-
-            _p1Playing = _p2Playing = _p3Playing = _p4Playing = true;
-        }
-        break;
-    case 3:
-        {
-            Map[0]->SetAnimScale(1.0f); //Felsö fal
-            Map[1]->SetAnimScale(0.0f); //Alsó fal
-            Map[2]->SetAnimScale(0.0f); //Jobb nagy fal
-            Map[3]->SetAnimScale(0.0f); //Bal nagy fal
-
-            Map[4]->SetAnimScale(1.0f); //Jobb felsö sarok
-            Map[5]->SetAnimScale(1.0f); //Bal felsö sarok
-            Map[6]->SetAnimScale(0.0f); //Jobb alsó sarok
-            Map[7]->SetAnimScale(0.0f); //Bal alsó sarok
-
-            Map[8]->SetAnimScale(0.0f); //Felsö kis fal
-            Map[9]->SetAnimScale(0.0f); //Alsó kis fal
-            Map[10]->SetAnimScale(0.0f); //Jobb kis fal
-            Map[11]->SetAnimScale(0.0f); //Bal kis fal
-
-            Map[12]->SetAnimScale(1.0f); //Jobb fura fal
-            Map[13]->SetAnimScale(1.0f); //Bal fura fal
-            Map[14]->SetAnimScale(1.0f); //Alsó fura fal
-
-            mapRenderX = lineL / 2 + MapSize / 2;
-            mapRenderZ = MapSize;
-            mapOffsetX = -lineL / 2;
-
-            _p2Playing = _p2Playing = _p3Playing = true;
-            _p4Playing = false;
-        }
-        break;
-    case 2:
-        {
-            Map[0]->SetAnimScale(0.0f); //Felsö fal
-            Map[1]->SetAnimScale(0.0f); //Alsó fal
-            Map[2]->SetAnimScale(0.0f); //Jobb nagy fal
-            Map[3]->SetAnimScale(0.0f); //Bal nagy fal
-
-            Map[4]->SetAnimScale(0.0f); //Jobb felsö sarok
-            Map[5]->SetAnimScale(0.0f); //Bal felsö sarok
-            Map[6]->SetAnimScale(0.0f); //Jobb alsó sarok
-            Map[7]->SetAnimScale(0.0f); //Bal alsó sarok
-
-            Map[8]->SetAnimScale(1.0f); //Felsö kis fal
-            Map[9]->SetAnimScale(1.0f); //Alsó kis fal
-            Map[10]->SetAnimScale(1.0f); //Jobb kis fal
-            Map[11]->SetAnimScale(1.0f); //Bal kis fal
-
-            Map[12]->SetAnimScale(0.0f); //Jobb fura fal
-            Map[13]->SetAnimScale(0.0f); //Bal fura fal
-            Map[14]->SetAnimScale(0.0f); //Alsó fura fal
-
-            mapRenderX = lineL;
-            mapRenderZ = MapSize;
-
-            _p2Playing = _p2Playing = true;
-            _p3Playing = _p4Playing = false;
-        }
-        break;
-    }
-
-    Pads[0]->Animate = true;
-    Pads[0]->AnimTargetScale = (_p1Playing ? 1.0f : 0.0f);
-    Pads[0]->AnimateSize = true;
-    Pads[0]->TargetSize = BasePadSize;
-
-    Pads[1]->Animate = true;
-    Pads[1]->AnimTargetScale = (_p2Playing ? 1.0f : 0.0f);
-    Pads[1]->AnimateSize = true;
-    Pads[1]->TargetSize = BasePadSize;
-
-    Pads[2]->Animate = true;
-    Pads[2]->AnimTargetScale = (_p3Playing ? 1.0f : 0.0f);
-    Pads[2]->AnimateSize = true;
-    Pads[2]->TargetSize = BasePadSize;
-
-    Pads[3]->Animate = true;
-    Pads[3]->AnimTargetScale = (_p4Playing ? 1.0f : 0.0f);
-    Pads[3]->AnimateSize = true;
-    Pads[3]->TargetSize = BasePadSize;
-}
-
-void Game::LoadTexture(Texture2D* tex, string file)
+/*====TEXTÚRA BETÖLTöK=====*/
+/*void Game::LoadTexture(Texture2D* tex, string file)
 {
     if(!tex->Load(file))
     {
         Pong3D::GlobalError = true;
     }
-}
+}*/
 
 void Game::LoadTextureMem(Texture2D* tex, DataBlock data)
 {
@@ -548,21 +439,29 @@ void Game::LoadTextureMem(Texture2D* tex, DataBlock data)
     }
 }
 
-bool asd = false;
+/*====ALAP UPDATE & RENDER======*/
 void Game::Update()
 {
-    if(Keyboard::IsKeyDown(SDL_SCANCODE_G)){
-        if(!asd)
-        {
-            asd = true;
-
-            Powerup* po = new Powerup(0,0,0,PowerupTarget::All,PowerupType::DoubleBall);
-            po->Activate(this, Ballz[0]);
-            delete po;
+    if(Keyboard::IsKeyDown(SDL_SCANCODE_F1)){
+        if(!_fpsButton){
+            _fpsButton = true;
+            _pong->SetFPSMode(0);
+        }
+    }
+    else if(Keyboard::IsKeyDown(SDL_SCANCODE_F2)){
+        if(!_fpsButton){
+            _fpsButton = true;
+            _pong->SetFPSMode(30);
+        }
+    }
+    else if(Keyboard::IsKeyDown(SDL_SCANCODE_F3)){
+       if(!_fpsButton){
+            _fpsButton = true;
+            _pong->SetFPSMode(60);
         }
     }
     else
-        asd = false;
+        _fpsButton = false;
 
     if(_menuFade){
         if(_menuAlpha > _menuTargetAlpha){
@@ -787,6 +686,7 @@ void Game::DrawMenu(bool board)
     _batch->End();
 }
 
+/*=====JÁTÉK=====*/
 bool Game::CanGameStart()
 {
     bool p1 = (_p1Ready || _p1Bot);
@@ -797,7 +697,122 @@ bool Game::CanGameStart()
     return ((p1 && p2 && !p3 && !p4) || (p1 && p2 && p3 && !p4) || (p1 && p2 && p3 && p4));
 }
 
-/*=====Játék=====*/
+void Game::BuildMap(int pc)
+{
+    float ms = MapSize;
+
+    float lineL = MapSize - wallSize - cornerSize;
+
+    mapOffsetX = 0.0f;
+
+    switch(pc){
+    case 4:
+        {
+            Map[0]->SetAnimScale(1.0f); //Felsö fal
+            Map[1]->SetAnimScale(1.0f); //Alsó fal
+            Map[2]->SetAnimScale(1.0f); //Jobb nagy fal
+            Map[3]->SetAnimScale(1.0f); //Bal nagy fal
+
+            Map[4]->SetAnimScale(1.0f); //Jobb felsö sarok
+            Map[5]->SetAnimScale(1.0f); //Bal felsö sarok
+            Map[6]->SetAnimScale(1.0f); //Jobb alsó sarok
+            Map[7]->SetAnimScale(1.0f); //Bal alsó sarok
+
+            Map[8]->SetAnimScale(0.0f); //Felsö kis fal
+            Map[9]->SetAnimScale(0.0f); //Alsó kis fal
+            Map[10]->SetAnimScale(0.0f); //Jobb kis fal
+            Map[11]->SetAnimScale(0.0f); //Bal kis fal
+
+            Map[12]->SetAnimScale(0.0f); //Jobb fura fal
+            Map[13]->SetAnimScale(0.0f); //Bal fura fal
+            Map[14]->SetAnimScale(0.0f); //Alsó fura fal
+
+            mapRenderX = MapSize;
+            mapRenderZ = MapSize;
+
+            _p1Playing = _p2Playing = _p3Playing = _p4Playing = true;
+        }
+        break;
+    case 3:
+        {
+            Map[0]->SetAnimScale(1.0f); //Felsö fal
+            Map[1]->SetAnimScale(0.0f); //Alsó fal
+            Map[2]->SetAnimScale(0.0f); //Jobb nagy fal
+            Map[3]->SetAnimScale(0.0f); //Bal nagy fal
+
+            Map[4]->SetAnimScale(1.0f); //Jobb felsö sarok
+            Map[5]->SetAnimScale(1.0f); //Bal felsö sarok
+            Map[6]->SetAnimScale(0.0f); //Jobb alsó sarok
+            Map[7]->SetAnimScale(0.0f); //Bal alsó sarok
+
+            Map[8]->SetAnimScale(0.0f); //Felsö kis fal
+            Map[9]->SetAnimScale(0.0f); //Alsó kis fal
+            Map[10]->SetAnimScale(0.0f); //Jobb kis fal
+            Map[11]->SetAnimScale(0.0f); //Bal kis fal
+
+            Map[12]->SetAnimScale(1.0f); //Jobb fura fal
+            Map[13]->SetAnimScale(1.0f); //Bal fura fal
+            Map[14]->SetAnimScale(1.0f); //Alsó fura fal
+
+            mapRenderX = lineL / 2 + MapSize / 2;
+            mapRenderZ = MapSize;
+            mapOffsetX = -lineL / 2;
+
+            _p2Playing = _p2Playing = _p3Playing = true;
+            _p4Playing = false;
+        }
+        break;
+    case 2:
+        {
+            Map[0]->SetAnimScale(0.0f); //Felsö fal
+            Map[1]->SetAnimScale(0.0f); //Alsó fal
+            Map[2]->SetAnimScale(0.0f); //Jobb nagy fal
+            Map[3]->SetAnimScale(0.0f); //Bal nagy fal
+
+            Map[4]->SetAnimScale(0.0f); //Jobb felsö sarok
+            Map[5]->SetAnimScale(0.0f); //Bal felsö sarok
+            Map[6]->SetAnimScale(0.0f); //Jobb alsó sarok
+            Map[7]->SetAnimScale(0.0f); //Bal alsó sarok
+
+            Map[8]->SetAnimScale(1.0f); //Felsö kis fal
+            Map[9]->SetAnimScale(1.0f); //Alsó kis fal
+            Map[10]->SetAnimScale(1.0f); //Jobb kis fal
+            Map[11]->SetAnimScale(1.0f); //Bal kis fal
+
+            Map[12]->SetAnimScale(0.0f); //Jobb fura fal
+            Map[13]->SetAnimScale(0.0f); //Bal fura fal
+            Map[14]->SetAnimScale(0.0f); //Alsó fura fal
+
+            mapRenderX = lineL;
+            mapRenderZ = MapSize;
+
+            _p2Playing = _p2Playing = true;
+            _p3Playing = _p4Playing = false;
+        }
+        break;
+    }
+
+    Pads[0]->Animate = true;
+    Pads[0]->AnimTargetScale = (_p1Playing ? 1.0f : 0.0f);
+    Pads[0]->AnimateSize = true;
+    Pads[0]->TargetSize = BasePadSize;
+
+    Pads[1]->Animate = true;
+    Pads[1]->AnimTargetScale = (_p2Playing ? 1.0f : 0.0f);
+    Pads[1]->AnimateSize = true;
+    Pads[1]->TargetSize = BasePadSize;
+
+    Pads[2]->Animate = true;
+    Pads[2]->AnimTargetScale = (_p3Playing ? 1.0f : 0.0f);
+    Pads[2]->AnimateSize = true;
+    Pads[2]->TargetSize = BasePadSize;
+
+    Pads[3]->Animate = true;
+    Pads[3]->AnimTargetScale = (_p4Playing ? 1.0f : 0.0f);
+    Pads[3]->AnimateSize = true;
+    Pads[3]->TargetSize = BasePadSize;
+}
+
 void Game::SetupGame()
 {
     int playerCount = 0;
@@ -934,8 +949,14 @@ void Game::UpdateGame()
 
             if(Powerups.size() < 3)
             {
-                float xRand = (((float)rand() / (float)RAND_MAX) - 0.5f) * 2.0f * (mapRenderX / 2);
-                float zRand = (((float)rand() / (float)RAND_MAX) - 0.5f) * 2.0f * (mapRenderZ / 2);
+                float xRand;
+                float zRand;
+
+                do
+                {
+                    xRand = (((float)rand() / (float)RAND_MAX) - 0.5f) * 2.0f * (mapRenderX / 2);
+                    zRand = (((float)rand() / (float)RAND_MAX) - 0.5f) * 2.0f * (mapRenderZ / 2);
+                }while(IsPowerupNear(xRand,zRand));
 
                 PowerupTarget trg = (PowerupTarget)(rand() % (int)PowerupTarget::TrgMax);
                 PowerupType typ = (PowerupType)(rand() % (int)PowerupType::TypeMax);
@@ -949,10 +970,23 @@ void Game::UpdateGame()
                     ty++;
                 }while(ty < 10);
 
-                Powerups.push_back(new Powerup(xRand,mapH/2,zRand,trg,typ));
+                Powerups.push_back(new Powerup(xRand,0.2f,zRand,trg,typ));
             }
         }
     }
+}
+
+bool Game::IsPowerupNear(float x, float z)
+{
+    for(Powerup* &p : Powerups)
+    {
+        if(sqrt(pow(x-p->X,2)+pow(z-p->Z,2)) < Powerup::Radius * 2)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void Game::DrawGame()
@@ -967,8 +1001,7 @@ void Game::DrawGame()
     //Nézet beállítások
     glm::mat4 p = glm::perspective(45.0f, ((float)_pong->GetGFX()->GetContextWidth() / (float)_pong->GetGFX()->GetContextHeight()), 1.0f, 150.0f);
     glm::mat4 v = glm::lookAt(glm::vec3(camRenderX * 1.5f + camLookX, 8, camRenderZ * 1.5f), glm::vec3(camLookX,-1,0), glm::vec3(0,1,0));
-    //glm::mat4 v = glm::lookAt(glm::vec3(0, 20, 0), glm::vec3(0,-1,0), glm::vec3(0,0,1));
-    //v = glm::rotate(v, Pong3D::TotalRunTime * -25, glm::vec3(0,1,0));
+    //v = glm::rotate(v, camRotation, glm::vec3(0,1,0));
     glm::mat4 pv = p*v;
 
     float lineL = MapSize - wallSize - cornerSize;
@@ -1155,6 +1188,7 @@ void Game::DrawGame()
     }
 }
 
+/*====ESZKÖZÖK======*/
 void Game::DrawSphere(BB* bb, float x, float y, float z, float scale)
 {
     glm::mat4 m = bb->GetWorldMatrix();
@@ -1234,6 +1268,7 @@ void Game::DrawButtonHelp(glm::vec3 pos, float rot, float scale, int player)
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, NULL);
 }
 
+/*====JTÁÉK ESEMÉNYEK======*/
 void Game::OnBallRemoved(int lt, int tag)
 {
     if(lt > -1)
@@ -1261,6 +1296,7 @@ void Game::OnBallRemoved(int lt, int tag)
 
             _countdown = true;
             _countdownValue = 3.0f;
+            SwapButtons = false;
             for(int x = 0;x<4;x++)
             {
                 Pads[x]->GotoCenter = true;

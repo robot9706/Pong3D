@@ -108,7 +108,7 @@ void Pong3D::Run()
         {
             int left = (1000 / _targetFps) - ticks;
             if(left > 0)
-                SDL_Delay(left / 2); //Várok, hogy kitöltsem a maradék idõt a képbõl
+                SDL_Delay(left); //Várok, hogy kitöltsem a maradék idõt a képbõl
 
             ticks = SDL_GetTicks() - _frameStartTicks;
             ElapsedTime = 1.0f / (float)_targetFps;
@@ -176,9 +176,12 @@ void Pong3D::HandleEvents()
     }
 }
 
-void Pong3D::Exit()
+void Pong3D::SetFPSMode(int target)
 {
-    _running = false;
+    _capFPS = (target > 0);
+    _targetFps = target;
+
+    cout << "FPS cap: " << (_capFPS ? "true" : "false") << " Target FPS: " << _targetFps << endl;
 }
 
 GFX* Pong3D::GetGFX()

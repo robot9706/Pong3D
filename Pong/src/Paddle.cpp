@@ -203,9 +203,9 @@ void Paddle::Update(Game* game, bool input)
     }
     else if(input)
     {
-        if(Keyboard::IsKeyDown(LeftKey))
+        if((Keyboard::IsKeyDown(LeftKey) && !game->SwapButtons) || (Keyboard::IsKeyDown(RightKey) && game->SwapButtons))
             Move(-1.0f);
-        else if(Keyboard::IsKeyDown(RightKey))
+        else if((Keyboard::IsKeyDown(RightKey) && !game->SwapButtons) || (Keyboard::IsKeyDown(LeftKey) && game->SwapButtons))
             Move(1.0f);
         else
             _move *= 0.95f;

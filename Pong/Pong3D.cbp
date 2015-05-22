@@ -77,6 +77,7 @@
 		<Unit filename="include/SphereRenderer.h" />
 		<Unit filename="include/SpriteBatch.h" />
 		<Unit filename="include/Texture2D.h" />
+		<Unit filename="include/TextureCube.h" />
 		<Unit filename="include/UVPlane.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BB.cpp" />
@@ -95,6 +96,7 @@
 		<Unit filename="src/SphereRenderer.cpp" />
 		<Unit filename="src/SpriteBatch.cpp" />
 		<Unit filename="src/Texture2D.cpp" />
+		<Unit filename="src/TextureCube.cpp" />
 		<Unit filename="src/UVPlane.cpp" />
 		<Extensions>
 			<code_completion />

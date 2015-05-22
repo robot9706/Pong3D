@@ -570,7 +570,7 @@
 	<cstdlib>
 	<time.h>
 
-1432229485 d:\code_blocks_projects\pong3d\pong\include\pong3d.h
+1432322488 d:\code_blocks_projects\pong3d\pong\include\pong3d.h
 	<GFX.h>
 	<Game.h>
 
@@ -895,7 +895,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1432316894 d:\code_blocks_projects\pong3d\pong\include\game.h
+1432322666 d:\code_blocks_projects\pong3d\pong\include\game.h
 	<Texture2D.h>
 	<TextureCube.h>
 	<SpriteBatch.h>
@@ -933,12 +933,12 @@
 	<BB.h>
 	<Game.h>
 
-1431883092 d:\code_blocks_projects\pong3d\pong\include\powerup.h
+1432321359 d:\code_blocks_projects\pong3d\pong\include\powerup.h
 	<BB.h>
 	<Game.h>
 	<Ball.h>
 
-1432312323 source:d:\code_blocks_projects\pong3d\pong\src\ball.cpp
+1432321657 source:d:\code_blocks_projects\pong3d\pong\src\ball.cpp
 	"Ball.h"
 	<Game.h>
 	<Pong3D.h>
@@ -946,7 +946,6 @@
 	<algorithm>
 	<Powerup.h>
 	<SoundManager.h>
-	<iostream>
 
 1432310222 source:d:\code_blocks_projects\pong3d\pong\src\bb.cpp
 	"BB.h"
@@ -971,7 +970,7 @@
 	<OpenGL/glu.h>
 	<GL/glu.h>
 
-1432318573 source:d:\code_blocks_projects\pong3d\pong\src\game.cpp
+1432322528 source:d:\code_blocks_projects\pong3d\pong\src\game.cpp
 	"Game.h"
 	<iostream>
 	<Pong3D.h>
@@ -1027,7 +1026,7 @@
 1431688721 source:d:\code_blocks_projects\pong3d\pong\src\mouse.cpp
 	"Mouse.h"
 
-1432310245 source:d:\code_blocks_projects\pong3d\pong\src\paddle.cpp
+1432321405 source:d:\code_blocks_projects\pong3d\pong\src\paddle.cpp
 	"Paddle.h"
 	<Keyboard.h>
 	<Pong3D.h>
@@ -1039,7 +1038,7 @@
 	<glew.h>
 	<Pong3D.h>
 
-1432236337 source:d:\code_blocks_projects\pong3d\pong\src\pong3d.cpp
+1432322640 source:d:\code_blocks_projects\pong3d\pong\src\pong3d.cpp
 	"Pong3D.h"
 	<SDL.h>
 	<glew.h>
@@ -1057,7 +1056,7 @@
 	<Pong3D.h>
 	<Texture2D.h>
 
-1432310938 source:d:\code_blocks_projects\pong3d\pong\src\powerup.cpp
+1432321782 source:d:\code_blocks_projects\pong3d\pong\src\powerup.cpp
 	"Powerup.h"
 	<Pong3D.h>
 	<algorithm>
@@ -1111,10 +1110,10 @@
 	<Pong3D.h>
 	<iostream>
 
-1432318501 d:\code_blocks_projects\pong3d\pong\include\data.h
+1432319991 d:\code_blocks_projects\pong3d\pong\include\data.h
 	<DataBlock.h>
 
-1432318500 d:\code_blocks_projects\pong3d\pong\include\datablock.h
+1432319990 d:\code_blocks_projects\pong3d\pong\include\datablock.h
 
 1432310267 source:d:\code_blocks_projects\pong3d\pong\src\soundmanager.cpp
 	"SoundManager.h"
@@ -1139,7 +1138,7 @@
 1432317067 d:\code_blocks_projects\pong3d\pong\include\texturecube.h
 	<DataBlock.h>
 
-1432317076 source:d:\code_blocks_projects\pong3d\pong\src\texturecube.cpp
+1432318710 source:d:\code_blocks_projects\pong3d\pong\src\texturecube.cpp
 	"TextureCube.h"
 	<glew.h>
 	<SDL.h>

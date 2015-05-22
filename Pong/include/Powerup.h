@@ -21,8 +21,9 @@ enum PowerupType
     FasterBall = 2,
     SlowerBall = 3,
     DoubleBall = 4,
+    SwapKeys = 5,
 
-    TypeMax = 5,
+    TypeMax = 6,
 };
 
 class Ball;

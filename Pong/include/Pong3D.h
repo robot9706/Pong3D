@@ -16,9 +16,10 @@ class Pong3D
 
         bool Init();
         void Run();
-        void Exit();
 
         void HandleEvents();
+
+        void SetFPSMode(int target);
 
         GFX* GetGFX();
 

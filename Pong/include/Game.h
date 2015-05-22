@@ -32,11 +32,14 @@ class Game
         Game(Pong3D* pong);
         virtual ~Game();
 
-        void LoadTexture(Texture2D* tex, string file);
+        //void LoadTexture(Texture2D* tex, string file);
         void LoadTextureMem(Texture2D* tex, DataBlock data);
 
+        //Alap Update & Render
         void Update();
         void Render();
+
+        //Rajzoló ezsköz cuccosok
         void DrawSphere(BB* bb, float x, float y, float z, float scale);
         void DrawCube(BB* bb, float x, float y, float z, float scale);
         void DrawCube(BB* bb, float x, float y, float z, float scaleX, float scaleZ);
@@ -56,27 +59,32 @@ class Game
         void UpdateGame();
         void DrawGame();
 
+        bool IsPowerupNear(float x, float z);
+
         vector<Ball*> Ballz;
         vector<BB*> Map;
         vector<Paddle*> Pads;
         vector<Powerup*> Powerups;
 
+        //Alap játék értékek
         static float MapSize;
         static float BasePadSize;
         static float BaseBallSize;
         static float BaseBallSpeed;
+        static float BaseCameraRotationSpeed;
 
+        //Játék események
         void OnBallRemoved(int lt, int wallTag);
         void OnFinished(bool board);
 
         int PlayerCount;
+        bool SwapButtons;
     private:
         Pong3D* _pong;
         SpriteBatch* _batch;
 
         State _state;
 
-        //Menü
         Texture2D* _pongLogo;
         Texture2D* _menuBG;
         Texture2D* _menu;
@@ -90,6 +98,8 @@ class Game
         Texture2D* _winz;
         Texture2D* _powerupImages;
         TextureCube* _skybox;
+
+        bool _fpsButton = false;
 
         bool _menuFade = false;
         float _menuAlpha = 1.0f;
@@ -128,7 +138,6 @@ class Game
         float winnumH;
         float winnumW;
 
-        //Játék
         bool _initialCountdown;
         bool _countdown;
         float _countdownValue;
@@ -177,6 +186,7 @@ class Game
         float camLookX;
         float camRenderX;
         float camRenderZ;
+        float camRotationSpeed;
 
         static string DiffuseColorVS;
         static string DiffuseColorFS;

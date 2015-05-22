@@ -64,23 +64,29 @@ void Powerup::Update(Game* g)
 
 void Powerup::Activate(Game* game, Ball* src)
 {
-    if(Type == PowerupType::SlowerBall || Type == PowerupType::FasterBall)
+    switch(Type)
     {
-        for(int x = 0;x<game->Ballz.size();x++)
+    case PowerupType::BiggerPad:
+    case PowerupType::SmallerPad:
+        for(int x = 0;x<game->PlayerCount;x++)
         {
-            switch(Type)
+            if(Target == PowerupTarget::All || (Target == PowerupTarget::Self && x == src->LastTouches[0]) || (Target == PowerupTarget::Others && x != src->LastTouches[0]))
             {
-                case PowerupType::SlowerBall:
-                    game->Ballz[x]->Speed = Game::BaseBallSpeed;
-                    break;
-                case PowerupType::FasterBall:
-                    game->Ballz[x]->Speed = Game::BaseBallSpeed * 2.0f;
-                    break;
+                switch(Type)
+                {
+                    case PowerupType::BiggerPad:
+                        game->Pads[x]->TargetSize = Game::BasePadSize * 1.5f;
+                        game->Pads[x]->AnimateSize = true;
+                        break;
+                    case PowerupType::SmallerPad:
+                        game->Pads[x]->TargetSize = Game::BasePadSize * 0.5f;
+                        game->Pads[x]->AnimateSize = true;
+                        break;
+                }
             }
         }
-    }
-    else if(Type == PowerupType::DoubleBall)
-    {
+        break;
+    case PowerupType::DoubleBall:
         for(int x = 0;x<game->Ballz.size();x++)
         {
             if(!game->Ballz[x]->NewBall && game->Ballz.size() < 10)
@@ -106,26 +112,25 @@ void Powerup::Activate(Game* game, Ball* src)
                 game->Ballz.push_back(b);
             }
         }
-    }
-    else
-    {
-        for(int x = 0;x<game->PlayerCount;x++)
+        break;
+    case PowerupType::SlowerBall:
+    case PowerupType::FasterBall:
+        for(int x = 0;x<game->Ballz.size();x++)
         {
-            if(Target == PowerupTarget::All || (Target == PowerupTarget::Self && x == src->LastTouches[0]) || (Target == PowerupTarget::Others && x != src->LastTouches[0]))
+            switch(Type)
             {
-                switch(Type)
-                {
-                    case PowerupType::BiggerPad:
-                        game->Pads[x]->TargetSize = Game::BasePadSize * 1.5f;
-                        game->Pads[x]->AnimateSize = true;
-                        break;
-                    case PowerupType::SmallerPad:
-                        game->Pads[x]->TargetSize = Game::BasePadSize * 0.5f;
-                        game->Pads[x]->AnimateSize = true;
-                        break;
-                }
+                case PowerupType::SlowerBall:
+                    game->Ballz[x]->Speed = Game::BaseBallSpeed;
+                    break;
+                case PowerupType::FasterBall:
+                    game->Ballz[x]->Speed = Game::BaseBallSpeed * 2.0f;
+                    break;
             }
         }
+        break;
+    case PowerupType::SwapKeys:
+        game->SwapButtons = !game->SwapButtons;
+        break;
     }
 }
 
@@ -155,21 +160,24 @@ bool Powerup::CanSpawn(Game* game, PowerupType type, PowerupTarget &trg)
     case PowerupType::SlowerBall:
         for(Ball* &b : game->Ballz){
             if(b->Speed > Game::BaseBallSpeed){
+                trg = PowerupTarget::All;
                 return true;
             }
         }
-        trg = PowerupTarget::All;
         break;
     case PowerupType::FasterBall:
         for(Ball* &b : game->Ballz){
             if(b->Speed < Game::BaseBallSpeed * 1.75f){
+                trg = PowerupTarget::All;
                 return true;
             }
         }
-        trg = PowerupTarget::All;
         break;
     case PowerupType::DoubleBall:
         trg = PowerupTarget::All;
+        return true;
+        break;
+    case PowerupType::SwapKeys:
         return true;
         break;
     }
