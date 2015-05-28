@@ -24,6 +24,7 @@ class Shader
         void SetVector4(unsigned int id, float x, float y, float z, float w);
         void SetVector3(unsigned int id, float x, float y, float z);
         void SetSampler(unsigned int id, int sampler, unsigned int texture);
+        void SetSamplerCube(unsigned int id, int sampler, unsigned int texture);
 
         virtual ~Shader();
     protected:

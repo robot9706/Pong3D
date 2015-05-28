@@ -130,7 +130,15 @@ void Shader::SetSampler(unsigned int id, int sampler, unsigned int tex)
     glActiveTexture(GL_TEXTURE0 + sampler);
     glBindTexture(GL_TEXTURE_2D, tex);
 
-    glUniform1f(id, sampler);
+    glUniform1i(id, sampler);
+}
+
+void Shader::SetSamplerCube(unsigned int id, int sampler, unsigned int tex)
+{
+    glActiveTexture(GL_TEXTURE0 + sampler);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, tex);
+
+    glUniform1i(id, sampler);
 }
 
 void Shader::BindLocation(string name, int attrib)

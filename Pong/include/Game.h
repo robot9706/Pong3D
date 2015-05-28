@@ -202,6 +202,8 @@ class Game
         float camRenderZ;
         float camRotation;
 
+        int glError;
+
         //Shader kódok
         static string DiffuseColorVS;
         static string DiffuseColorFS;

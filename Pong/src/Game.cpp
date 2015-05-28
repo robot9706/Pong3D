@@ -443,14 +443,26 @@ void Game::LoadTextureMem(Texture2D* tex, DataBlock data)
 /*====ALAP UPDATE & RENDER======*/
 void Game::Update()
 {
+    if(Keyboard::IsKeyDown(SDL_SCANCODE_F8))
+    {
+        for(Ball* &b : Ballz)
+            delete b;
+        Ballz.clear();
+
+        OnBallRemoved(-1,-1);
+
+        Ballz[0]->SpawnBall(rand() % PlayerCount, MapSize);
+    }
+
     if(Keyboard::IsKeyDown(SDL_SCANCODE_ESCAPE))
     {
         if(_state == State::Gameplay)
         {
+            _escTime += Pong3D::ElapsedTime;
             if(_escTime >= 1.0f)
                 OnFinished(false);
         }
-        else
+        else if(_escTime == 0.0f)
         {
             _pong->Exit();
         }
@@ -538,6 +550,14 @@ void Game::Render()
     {
         DrawMenu(_state == State::Finish);
     }
+
+    do
+    {
+        glError = glGetError();
+        if(glError != GL_NO_ERROR){
+            cout << "GL error: " << glError << endl;
+        }
+    }while(glError != GL_NO_ERROR);
 }
 
 /*=====MENÜ=====*/
@@ -1028,6 +1048,7 @@ void Game::DrawGame()
     float lineL = MapSize - wallSize - cornerSize;
     float lineW = 0.1f;
 
+
     //Pálya megjelenítés
     {
         _diffuseColorShader->Apply();
@@ -1191,7 +1212,7 @@ void Game::DrawGame()
         SphereRenderer::BindVAO();
 
         _skyboxShader->Apply();
-        _skyboxShader->SetSampler(_skyboxSampler, 0, _skybox->GetID());
+        _skyboxShader->SetSamplerCube(_skyboxSampler, 0, _skybox->GetID());
         _skyboxShader->SetMatrix(_skyboxPV, glm::value_ptr(pv));
         _skyboxShader->SetMatrix(_skyboxW, glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -7.5f, 0.0f)), glm::vec3(-20.0f)));
 

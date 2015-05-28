@@ -149,6 +149,9 @@ void SpriteBatch::Begin()
 
 void SpriteBatch::DrawTexture(Texture2D* tex, float destX, float destY, float destW, float destH, float originX, float originY, float rotation, float scale)
 {
+    if(!_begun)
+        cout << "SB hiba!" << endl;
+
     //Minden méretet HD fölbontásra adok meg és itt alakítom ezeket az aktuális fölbontásra
     destX = (destX / 1280) * _pong->GetGFX()->GetContextWidth();
     destY = (destY / 720) * _pong->GetGFX()->GetContextHeight();
