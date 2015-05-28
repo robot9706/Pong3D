@@ -10,9 +10,10 @@ class GFX
 {
     public:
         GFX(string title, int width, int height, int bpc);
-        bool Init();
-        void SwapBuffer();
         virtual ~GFX();
+
+        bool Init(); //Elkõkészít minden grafikával kapcsolatos dolgot
+        void SwapBuffer(); //Megjeleníti a képet
 
         int GetContextWidth();
         int GetContextHeight();

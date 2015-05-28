@@ -42,12 +42,14 @@ bool Pong3D::Init()
     int minor = (int)glVer[2] - 48;
 
     cout << "OpenGL: " << glVer << endl;
-    cout << " Major: " << major << endl;
-    cout << " Minor: " << minor << endl;
     if(major < 2 || !glewIsSupported("GL_VERSION_2_0"))
     {
         cout << "Minimum OpenGL 2.0 szükséges!";
         return false;
+    }
+    else
+    {
+        cout << "OpenGL OK" << endl;
     }
 
     //OpenGL alap beállítások
@@ -67,7 +69,7 @@ bool Pong3D::Init()
     glClearColor(100.0f / 255.0f, 149.0f / 255.0f, 237.0f / 255.0f, 1); //Kukoricavirágkék O.o
 
     //Spritebatch elõkészítése
-    SpriteBatch::Singelton = new SpriteBatch(this);
+    SpriteBatch::Instance = new SpriteBatch(this);
 
     _game = new Game(this);
 
@@ -108,7 +110,7 @@ void Pong3D::Run()
         {
             int left = (1000 / _targetFps) - ticks;
             if(left > 0)
-                SDL_Delay(left); //Várok, hogy kitöltsem a maradék idõt a képbõl
+                SDL_Delay(left / 2); //Várok, hogy kitöltsem a maradék idõt a képbõl (/2 -> wut)
 
             ticks = SDL_GetTicks() - _frameStartTicks;
             ElapsedTime = 1.0f / (float)_targetFps;
@@ -176,7 +178,7 @@ void Pong3D::HandleEvents()
     }
 }
 
-void Pong3D::SetFPSMode(int target)
+void Pong3D::SetTargetFPS(int target)
 {
     _capFPS = (target > 0);
     _targetFps = target;

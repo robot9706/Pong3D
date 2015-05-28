@@ -7,7 +7,7 @@
 class SoundManager
 {
     public:
-        static void Init(DataBlock* a);
+        static void Init(DataBlock* a); //Elõkészíti a hangokhoz szükséges dolgokat ("a" tömb tartalmazza a hangot adatait)
         static void Cleanup();
 
         static void PlayHitSound();
@@ -15,6 +15,8 @@ class SoundManager
         static void PlayPowerupSound();
 
     private:
+        static bool SoundOK;
+
         static Mix_Chunk* _hitSound;
         static Mix_Chunk* _scoreSound;
         static Mix_Chunk* _powerupSound;

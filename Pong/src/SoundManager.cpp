@@ -11,18 +11,23 @@ Mix_Chunk* SoundManager::_hitSound = NULL;
 Mix_Chunk* SoundManager::_scoreSound = NULL;
 Mix_Chunk* SoundManager::_powerupSound = NULL;
 
+bool SoundManager::SoundOK = true;
+
 void SoundManager::Init(DataBlock* s)
 {
     if(Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 1024) != 0)
     {
-        cout << "Nóp" << endl;
-        Pong3D::GlobalError = true;
+        cout << "Hang hiba!" << endl;
+        //Pong3D::GlobalError = true;
+        SoundOK = false;
     }
     else
     {
         _hitSound = LoadSound(s[0]);
         _scoreSound = LoadSound(s[1]);
         _powerupSound = LoadSound(s[2]);
+
+        cout << "Hang OK" << endl;
     }
 }
 
@@ -47,15 +52,18 @@ Mix_Chunk* SoundManager::LoadSound(DataBlock data)
 
 void SoundManager::PlayHitSound()
 {
-    Mix_PlayChannel(-1, _hitSound, 0);
+    if(SoundOK)
+        Mix_PlayChannel(-1, _hitSound, 0);
 }
 
 void SoundManager::PlayScoreSound()
 {
-    Mix_PlayChannel(-1, _scoreSound, 0);
+    if(SoundOK)
+        Mix_PlayChannel(-1, _scoreSound, 0);
 }
 
 void SoundManager::PlayPowerupSound()
 {
-    Mix_PlayChannel(-1, _powerupSound, 0);
+    if(SoundOK)
+        Mix_PlayChannel(-1, _powerupSound, 0);
 }

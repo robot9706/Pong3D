@@ -1,7 +1,7 @@
 #ifndef SPHERERENDERER_H
 #define SPHERERENDERER_H
 
-
+//Gömb rajzoló
 class SphereRenderer
 {
     public:

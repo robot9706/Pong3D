@@ -3,6 +3,8 @@
 //============================
 #include "Shader.h"
 
+#define GLEW_STATIC
+
 #include <string>
 #include <glew.h>
 #include <vector>

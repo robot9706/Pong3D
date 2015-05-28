@@ -33,15 +33,17 @@ class Powerup
     public:
         Powerup(float x, float y, float z, PowerupTarget trg, PowerupType wot);
         virtual ~Powerup();
-        void Update(Game* game);
-        void Activate(Game* game, Ball* ball);
-        static bool CanSpawn(Game* game, PowerupType type, PowerupTarget &trg);
 
-        BB* Bounds;
+        void Update(Game* game); //Frissítés
+        void Activate(Game* game, Ball* ball); //Aktiválja a powerup hatását
+
+        BB* Bounds; //Méretek
+        //Hely
         float X;
         float Y;
         float Z;
 
+        //Animáció
         bool Disappear;
         float Scale;
         float Alpha;
@@ -50,6 +52,8 @@ class Powerup
         PowerupType Type;
 
         static float Radius;
+
+        static bool CanSpawn(Game* game, PowerupType type, PowerupTarget &trg); //Megmondja, hogy az adott típus tud-e spawn-olni
 };
 
 #endif // POWERUP_H

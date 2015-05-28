@@ -12,24 +12,26 @@ class Ball
         Ball(float s, float y);
         virtual ~Ball();
 
-        int* LastTouches;
+        void Update(Game* game); //Frissítõ fgv
+        void Render(Game* game); //Rajzoló fgv
 
-        BB* Bounds;
+        void RandomDir(); //Random irányba indítja a labdát
+        void SpawnBall(int player, float ms); //Játékostól függõen helyezi el és indítja el a labdát
+
+        int* LastTouch; //2 elemû tömb amely tartalmazza az elõ két érintõ játékos azonosítóát
+
+        BB* Bounds; //Méretek
+        //Pozíció
         float X;
         float Y;
         float Z;
 
+        //Irány vektor
         float DX;
         float DZ;
 
-        float Speed;
-        bool NewBall;
-
-        void Update(Game* game);
-        void Render(Game* game);
-
-        void RandomDir();
-        void SpawnBall(int player, float ms);
+        float Speed; //Sebesség (rly?)
+        bool NewBall; //Jelzi, hogy egy labda új-e, ez a Powerup-hoz kell
 };
 
 #endif // BALL_H

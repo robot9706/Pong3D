@@ -11,10 +11,11 @@ using namespace std;
 class Pong3D;
 class Texture2D;
 
+//2D rajzoló
 class SpriteBatch
 {
     public:
-        static SpriteBatch* Singelton;
+        static SpriteBatch* Instance; //SpriteBatch példány
 
         SpriteBatch(Pong3D* pong);
         virtual ~SpriteBatch();

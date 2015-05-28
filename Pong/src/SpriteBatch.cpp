@@ -21,7 +21,7 @@
  * 3-4: UV
  */
 
-SpriteBatch* SpriteBatch::Singelton = NULL;
+SpriteBatch* SpriteBatch::Instance = NULL;
 
 int SpriteBatch::Stride = sizeof(float) * 5;
 int SpriteBatch::TextureOffset = sizeof(float) * 3;

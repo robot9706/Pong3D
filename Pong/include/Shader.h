@@ -11,12 +11,14 @@ class Shader
     public:
         Shader();
 
-        bool Load(string vsCode, string fsCode);
-        void Apply();
+        bool Load(string vsCode, string fsCode); //Betölti a shader-t
+        void Apply(); //Aktiválja
 
-        void BindLocation(string name, int attrib);
+        void BindLocation(string name, int attrib); //Beállítja, hogy a shader-ben egy bemenet ("name"), melyik vertex attribútumnak felel meg
 
-        unsigned int GetUniform(string name);
+        unsigned int GetUniform(string name); //Visszaadja egy shader változó helyét
+
+        //Shader változó érték megadása:
         void SetMatrix(unsigned int id, float* mat);
         void SetMatrix(unsigned int id, glm::mat4 mat);
         void SetVector4(unsigned int id, float x, float y, float z, float w);

@@ -14,12 +14,12 @@ class Pong3D
         Pong3D();
         virtual ~Pong3D();
 
-        bool Init();
-        void Run();
+        bool Init(); //Elökézíti a játékot
+        void Run(); //Futtatja a játékot :O
 
         void HandleEvents();
 
-        void SetFPSMode(int target);
+        void SetTargetFPS(int target);
 
         GFX* GetGFX();
 
@@ -27,9 +27,10 @@ class Pong3D
         GFX* _gfx;
         SDL_Event* _event;
         Game* _game;
+
         bool _windowFocus = false;
 
-        int _mx, _my;
+        int _mx, _my; //Egér pozíticó
 
         //Idõzítés
         bool _running = true;

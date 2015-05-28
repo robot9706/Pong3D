@@ -125,7 +125,7 @@ Game::Game(Pong3D* p)
     _pong = p;
 
     _state = State::Menu;
-    _batch = SpriteBatch::Singelton;
+    _batch = SpriteBatch::Instance;
 
     SoundManager::Init(new DataBlock[3]{hit_wav,score_wav,powerup_activate_wav});
 
@@ -240,7 +240,7 @@ Game::Game(Pong3D* p)
         LoadTextureMem(&_numbers[x], numz[x]);
     }
 
-    DataBlock pws[] = {BiggerPad_png,SmallerPad_png,FasterBall_png,SlowerBall_png,DoubleBall_png,SwapKeys_png,RotateCamera_png,StopCameraRotate_png};
+    DataBlock pws[] = {BiggerPad_png,SmallerPad_png,FasterBall_png,SlowerBall_png,DoubleBall_png,SwapKeys_png};
     _powerupImages = new Texture2D[(int)PowerupType::TypeMax];
     for(int x = 0;x<(int)PowerupType::TypeMax;x++){
         LoadTextureMem(&_powerupImages[x], pws[x]);
@@ -445,19 +445,19 @@ void Game::Update()
     if(Keyboard::IsKeyDown(SDL_SCANCODE_F1)){
         if(!_fpsButton){
             _fpsButton = true;
-            _pong->SetFPSMode(0);
+            _pong->SetTargetFPS(0);
         }
     }
     else if(Keyboard::IsKeyDown(SDL_SCANCODE_F2)){
         if(!_fpsButton){
             _fpsButton = true;
-            _pong->SetFPSMode(30);
+            _pong->SetTargetFPS(30);
         }
     }
     else if(Keyboard::IsKeyDown(SDL_SCANCODE_F3)){
        if(!_fpsButton){
             _fpsButton = true;
-            _pong->SetFPSMode(60);
+            _pong->SetTargetFPS(60);
         }
     }
     else

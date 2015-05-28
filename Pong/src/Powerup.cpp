@@ -70,7 +70,7 @@ void Powerup::Activate(Game* game, Ball* src)
     case PowerupType::SmallerPad:
         for(int x = 0;x<game->PlayerCount;x++)
         {
-            if(Target == PowerupTarget::All || (Target == PowerupTarget::Self && x == src->LastTouches[0]) || (Target == PowerupTarget::Others && x != src->LastTouches[0]))
+            if(Target == PowerupTarget::All || (Target == PowerupTarget::Self && x == src->LastTouch[0]) || (Target == PowerupTarget::Others && x != src->LastTouch[0]))
             {
                 switch(Type)
                 {
@@ -106,8 +106,8 @@ void Powerup::Activate(Game* game, Ball* src)
                 b->Z = game->Ballz[x]->Z;
                 b->NewBall = true;
                 b->Speed = game->Ballz[x]->Speed;
-                b->LastTouches[0] = game->Ballz[x]->LastTouches[0];
-                b->LastTouches[1] = game->Ballz[x]->LastTouches[1];
+                b->LastTouch[0] = game->Ballz[x]->LastTouch[0];
+                b->LastTouch[1] = game->Ballz[x]->LastTouch[1];
 
                 game->Ballz.push_back(b);
             }

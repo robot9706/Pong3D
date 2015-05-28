@@ -18,7 +18,7 @@ Ball::Ball(float s, float y)
     float hs = s / 2.0f;
     Bounds = new BB(-hs,-hs,-hs,hs,hs,hs);
 
-    LastTouches = new int[2]{-1,-1};
+    LastTouch = new int[2]{-1,-1};
     Speed = Game::BaseBallSpeed;;
 
     DX = 0.0f;
@@ -32,8 +32,8 @@ Ball::~Ball()
     delete Bounds;
     Bounds = NULL;
 
-    delete [] LastTouches;
-    LastTouches = NULL;
+    delete [] LastTouch;
+    LastTouch = NULL;
 }
 
 void Ball::RandomDir()
@@ -68,12 +68,12 @@ void Ball::Update(Game* game)
         {
             SoundManager::PlayHitSound();
 
-            if(LastTouches[0] != p->PlayerID)
+            if(LastTouch[0] != p->PlayerID)
             {
-                if(LastTouches[1] != LastTouches[0])
-                    LastTouches[1] = LastTouches[0];
+                if(LastTouch[1] != LastTouch[0])
+                    LastTouch[1] = LastTouch[0];
 
-                LastTouches[0] = p->PlayerID;
+                LastTouch[0] = p->PlayerID;
             }
 
             if(p->DirectionX)
@@ -146,10 +146,10 @@ void Ball::Update(Game* game)
                 game->Ballz.erase(std::remove(game->Ballz.begin(), game->Ballz.end(), this), game->Ballz.end());
 
                 int touch = -1;
-                if(LastTouches[0] == b->Tag)
-                    touch = LastTouches[1];
+                if(LastTouch[0] == b->Tag)
+                    touch = LastTouch[1];
                 else
-                    touch = LastTouches[0];
+                    touch = LastTouch[0];
 
                 game->OnBallRemoved(touch, b->Tag);
                 return;

@@ -9,7 +9,7 @@ class Mouse
         static int Y;
         static bool LeftButton;
         static bool LeftPress;
-        static bool HitTest(float rectX, float rectY, float rectW, float rectH);
+        static bool HitTest(float rectX, float rectY, float rectW, float rectH); //Megmondja, hogy az egér benne van-e a téglalapban
 };
 
 #endif // MOUSE_H

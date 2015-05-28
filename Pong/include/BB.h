@@ -3,15 +3,7 @@
 
 #include <glm/mat4x4.hpp>
 
-enum Hit
-{
-    XN,
-    XP,
-    ZN,
-    ZP,
-    None
-};
-
+//Egy 3D-s dobozt leíró osztály
 class BB
 {
     public:
@@ -19,19 +11,18 @@ class BB
         BB(float minX, float minY, float minZ, float maxX, float maxY, float maxZ);
         BB(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, int tag, float startScale);
 
-        float MinX, MinY, MinZ, MaxX, MaxY, MaxZ;
-        float SizeX, SizeY, SizeZ;
-        float CenterX, CenterY, CenterZ;
+        float MinX, MinY, MinZ, MaxX, MaxY, MaxZ; //Alsó és felsõ sarok
+        float SizeX, SizeY, SizeZ; //Méretek
+        float CenterX, CenterY, CenterZ; //Középpont
 
-        bool Insecrets(float x, float z, BB* o, float ox, float oz);
+        bool Insecrets(float x, float z, BB* o, float ox, float oz); //Fgv amely megmondja, hogy két doboz ütközik-e
 
-        glm::mat4 GetWorldMatrix();
-        glm::mat4 GetWorldMatrixPlane();
+        glm::mat4 GetWorldMatrix(); //Megadja a doboz "world" mátrix-át
+        glm::mat4 GetWorldMatrixPlane(); //Megadja a doboz "world" mátrix-át síkhoz
 
-        static Hit HitTest(BB* a, float ax, float az, float aDx, float aDz, BB* b, float bx, float bz, float &in);
+        int Tag; //Egyedi azonosító
 
-        int Tag;
-
+        //Méret animáció
         float AnimScale;
         float AnimTargetScale;
         bool Animate;

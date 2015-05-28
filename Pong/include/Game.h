@@ -59,8 +59,10 @@ class Game
         void UpdateGame();
         void DrawGame();
 
-        bool IsPowerupNear(float x, float z);
+        bool IsPowerupNear(float x, float z); //Megmondja, hogy van e a ponthoz közel másik powerup
+        void BuildMap(int playerCount);
 
+        //Vektorok, amelyek mindenféle játék objektumokat tárolnak
         vector<Ball*> Ballz;
         vector<BB*> Map;
         vector<Paddle*> Pads;
@@ -77,14 +79,15 @@ class Game
         void OnBallRemoved(int lt, int wallTag);
         void OnFinished(bool board);
 
-        int PlayerCount;
-        bool SwapButtons;
+        int PlayerCount; //Jétékos szám
+        bool SwapButtons; //Powerup hatés
     private:
         Pong3D* _pong;
         SpriteBatch* _batch;
 
-        State _state;
+        State _state; //Játék állapot: menü, játék, eredmény
 
+        //Textúrák
         Texture2D* _pongLogo;
         Texture2D* _menuBG;
         Texture2D* _menu;
@@ -97,14 +100,17 @@ class Game
         Texture2D* _pNames;
         Texture2D* _winz;
         Texture2D* _powerupImages;
+        Texture2D* _numbers;
         TextureCube* _skybox;
 
-        bool _fpsButton = false;
+        bool _fpsButton = false; //Jelzi, hogy valamelyik FPS gomb le van-e nyomva (f1, f2 vagy f3)
 
+        //Menü átlátszóság animáció
         bool _menuFade = false;
         float _menuAlpha = 1.0f;
         float _menuTargetAlpha = 0.0f;
 
+        //Játékos állapotok (lehetne tömbbe is tárolni, de így sikerült)
         bool _p1Ready = true;
         bool _p1Bot = false;
         bool _p1Playing = false;
@@ -121,11 +127,13 @@ class Game
         bool _p4Bot = false;
         bool _p4Playing = false;
 
-        int menuX, menuY, menuW, menuH;
-        int btnsX, btnsY, btnPadding;
-
+        //Játék állapot jelzök (hosszú ö-t nem írhatok mert ragel a C::B)
         bool _gameReady = true;
         bool _gameStart = false;
+
+        //Menü pozíciók a képen
+        int menuX, menuY, menuW, menuH;
+        int btnsX, btnsY, btnPadding;
 
         float nameWidth;
         float winzWidth;
@@ -138,12 +146,12 @@ class Game
         float winnumH;
         float winnumW;
 
+        //Visszaszámoláshoz kellö változók
         bool _initialCountdown;
         bool _countdown;
         float _countdownValue;
 
-        Texture2D* _numbers;
-
+        //Shader-ek
         Shader* _diffuseColorShader;
         unsigned int _difBaseColor;
         unsigned int _difPV;
@@ -166,20 +174,25 @@ class Game
         unsigned int _skyboxPV;
         unsigned int _skyboxW;
 
+        //Számolja, hogy mennyi ideje van lenyomva az Esc billentyü
         float _escTime;
 
-        int* _playerPoints;
-        int _targetPoints;
-        int* _finishOrder;
+        //Játékos pontszám változók
+        int* _playerPoints; //Játékosok pontszámai
+        int _targetPoints; //Cél pontszám
+        int* _finishOrder; //Játékos azonosítók sorrendbe a pontok alapján
         int* _finishPoints;
-        int _finishPlayers;
+        int _finishPlayers; //Megadja, hogy hányan játszottak a körben (kell a pontszám megjelenítönek)
 
-        float _powerupSpawnTime;
+        float _powerupSpawnTime; //Ez számolja, hogy mikor kell új powerup-ot létrehozni
 
+        //Pálya infók
         float wallSize;
         float mapH;
         float cornerSize;
         float gateSize;
+
+        //Pálya és kamera infók
         float mapRenderX;
         float mapRenderZ;
         float mapOffsetX;
@@ -188,6 +201,7 @@ class Game
         float camRenderZ;
         float camRotationSpeed;
 
+        //Shader kódok
         static string DiffuseColorVS;
         static string DiffuseColorFS;
         static string DiffuseTextureVS;
@@ -196,8 +210,6 @@ class Game
 
         static string SkyboxVS;
         static string SkyboxFS;
-
-        void BuildMap(int playerCount);
 };
 
 #endif // GAME_H

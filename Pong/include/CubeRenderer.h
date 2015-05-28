@@ -1,7 +1,7 @@
 #ifndef CUBERENDERER_H
 #define CUBERENDERER_H
 
-
+//Osztály, amely dobozokat tud rajzolni
 class CubeRenderer
 {
     public:
@@ -11,11 +11,12 @@ class CubeRenderer
         static void UnbindVAO();
 
     private:
+        //OpenGL cuccos
         static unsigned int _vbo;
         static unsigned int _ibo;
         static unsigned int _vao;
 
-        static int _stride;
+        static int _stride; //Ez tárolja, hogy egy vertex hány byte
 };
 
 #endif // CUBERENDERER_H

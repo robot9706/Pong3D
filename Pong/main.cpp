@@ -26,12 +26,20 @@ int main(int argc, char* args[])
         delete pong;
         pong = NULL;
 
+        if(Pong3D::GlobalError){
+            system("pause");
+        }
+
         return 0;
     }
 
     //Takarítás...
     delete pong;
     pong = NULL;
+
+    if(Pong3D::GlobalError){
+        system("pause");
+    }
 
     return 1;
 }

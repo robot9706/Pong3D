@@ -100,40 +100,6 @@ bool BB::Insecrets(float x, float z, BB* o, float ox, float oz)
     return (left < bright && right > bleft && top < bbottom && bottom > btop);
 }
 
-Hit BB::HitTest(BB* a, float ax, float az, float aDx, float aDz, BB* b, float bx, float bz, float &in)
-{
-    if(!a->Insecrets(ax, az, b, bx, bz))
-        return None;
-
-    float aLeft = ax - a->SizeX;
-    float aRight = ax + a->SizeX;
-    float aTop = az - a->SizeZ;
-    float aBottom = az + a->SizeZ;
-
-    float bLeft = bx - b->SizeX;
-    float bRight = bx + b->SizeX;
-    float bTop = bz - b->SizeZ;
-    float bBottom = bz + b->SizeZ;
-
-    if((aTop >= bTop && aTop <= bBottom) || (aBottom >= bTop && aBottom <= bBottom))
-    {
-        if(aRight > bLeft && aDx > 0)
-        {
-            in = aRight - bLeft;
-
-            return XP;
-        }
-        else if(aLeft < bRight && aDx < 0)
-        {
-            in = bRight - aLeft;
-
-            return XN;
-        }
-    }
-
-    return None;
-}
-
 void BB::SetAnimScale(float s)
 {
     AnimTargetScale = s;
