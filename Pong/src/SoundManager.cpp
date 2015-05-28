@@ -15,6 +15,12 @@ bool SoundManager::SoundOK = true;
 
 void SoundManager::Init(DataBlock* s)
 {
+    if(!SoundOK)
+    {
+        cout << "Hang kikapcsolva!" << endl;
+        return;
+    }
+
     if(Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 1024) != 0)
     {
         cout << "Hang hiba!" << endl;
@@ -66,4 +72,9 @@ void SoundManager::PlayPowerupSound()
 {
     if(SoundOK)
         Mix_PlayChannel(-1, _powerupSound, 0);
+}
+
+void SoundManager::Disable()
+{
+    SoundOK = false;
 }

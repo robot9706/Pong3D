@@ -27,12 +27,15 @@ Pong3D::Pong3D()
     _my = 0;
 }
 
-bool Pong3D::Init()
+bool Pong3D::Init(int ww, int wh, bool fs)
 {
-    _gfx = new GFX("Pong3D", 1440, 900, 8);
+    _gfx = new GFX("Pong3D", ww, wh, 8);
 
     if(!_gfx->Init())
         return false;
+
+    if(fs)
+        _gfx->SetFullscreen(true);
 
     _event = new SDL_Event();
 
@@ -124,6 +127,11 @@ void Pong3D::Run()
     }
 
     SDL_Quit();
+}
+
+void Pong3D::Exit()
+{
+    _running = false;
 }
 
 void Pong3D::HandleEvents()

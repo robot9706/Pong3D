@@ -14,8 +14,9 @@ class Pong3D
         Pong3D();
         virtual ~Pong3D();
 
-        bool Init(); //Elökézíti a játékot
+        bool Init(int ww, int wh, bool fs); //Elökézíti a játékot
         void Run(); //Futtatja a játékot :O
+        void Exit();
 
         void HandleEvents();
 

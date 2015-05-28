@@ -14,6 +14,8 @@ class SoundManager
         static void PlayScoreSound();
         static void PlayPowerupSound();
 
+        static void Disable();
+
     private:
         static bool SoundOK;
 

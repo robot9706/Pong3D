@@ -104,6 +104,7 @@ class Game
         TextureCube* _skybox;
 
         bool _fpsButton = false; //Jelzi, hogy valamelyik FPS gomb le van-e nyomva (f1, f2 vagy f3)
+        bool _fsButton = false; //F11 fullscreen gomb lenyomása
 
         //Menü átlátszóság animáció
         bool _menuFade = false;
@@ -199,7 +200,7 @@ class Game
         float camLookX;
         float camRenderX;
         float camRenderZ;
-        float camRotationSpeed;
+        float camRotation;
 
         //Shader kódok
         static string DiffuseColorVS;

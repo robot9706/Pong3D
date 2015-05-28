@@ -1,0 +1,9 @@
+D:\Code_Blocks_Projects\Pong3D\DataHGenerator\Pong3DLauncher\obj\Debug\Pong3DLauncher.csprojResolveAssemblyReference.cache
+D:\Code_Blocks_Projects\Pong3D\DataHGenerator\Pong3DLauncher\obj\Debug\Pong3DLauncher.LauncherForm.resources
+D:\Code_Blocks_Projects\Pong3D\DataHGenerator\Pong3DLauncher\obj\Debug\Pong3DLauncher.Properties.Resources.resources
+D:\Code_Blocks_Projects\Pong3D\DataHGenerator\Pong3DLauncher\obj\Debug\Pong3DLauncher.csproj.GenerateResource.Cache
+D:\Code_Blocks_Projects\Pong3D\DataHGenerator\Pong3DLauncher\bin\Debug\Pong3DLauncher.exe.config
+D:\Code_Blocks_Projects\Pong3D\DataHGenerator\Pong3DLauncher\bin\Debug\Pong3DLauncher.exe
+D:\Code_Blocks_Projects\Pong3D\DataHGenerator\Pong3DLauncher\bin\Debug\Pong3DLauncher.pdb
+D:\Code_Blocks_Projects\Pong3D\DataHGenerator\Pong3DLauncher\obj\Debug\Pong3DLauncher.exe
+D:\Code_Blocks_Projects\Pong3D\DataHGenerator\Pong3DLauncher\obj\Debug\Pong3DLauncher.pdb

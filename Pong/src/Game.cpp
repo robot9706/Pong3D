@@ -283,6 +283,7 @@ Game::Game(Pong3D* p)
     camLookX = 0.0f;
     camRenderX = MapSize;
     camRenderZ = MapSize;
+    camRotation = 0.0f;
 
     _playerPoints = new int[4]{0,0,0,0};
     _targetPoints = 10;
@@ -442,6 +443,36 @@ void Game::LoadTextureMem(Texture2D* tex, DataBlock data)
 /*====ALAP UPDATE & RENDER======*/
 void Game::Update()
 {
+    if(Keyboard::IsKeyDown(SDL_SCANCODE_ESCAPE))
+    {
+        if(_state == State::Gameplay)
+        {
+            if(_escTime >= 1.0f)
+                OnFinished(false);
+        }
+        else
+        {
+            _pong->Exit();
+        }
+    }
+    else
+    {
+        if(_escTime > 0.0f)
+            _escTime = 0.0f;
+    }
+
+    if(Keyboard::IsKeyDown(SDL_SCANCODE_F11)){
+        if(!_fsButton){
+            _fsButton = true;
+
+            _pong->GetGFX()->ToggleFullscreen();
+        }
+    }
+    else
+    {
+        _fsButton = false;
+    }
+
     if(Keyboard::IsKeyDown(SDL_SCANCODE_F1)){
         if(!_fpsButton){
             _fpsButton = true;
@@ -462,6 +493,13 @@ void Game::Update()
     }
     else
         _fpsButton = false;
+
+    if(Keyboard::IsKeyDown(SDL_SCANCODE_F5)){
+        camRotation += 45 * Pong3D::ElapsedTime;
+    }
+    if(Keyboard::IsKeyDown(SDL_SCANCODE_F6)){
+        camRotation -= 45 * Pong3D::ElapsedTime;
+    }
 
     if(_menuFade){
         if(_menuAlpha > _menuTargetAlpha){
@@ -887,23 +925,6 @@ void Game::SetupGame()
 
 void Game::UpdateGame()
 {
-    if(_state == State::Gameplay)
-    {
-        if(Keyboard::IsKeyDown(SDL_SCANCODE_ESCAPE))
-        {
-            _escTime += Pong3D::ElapsedTime;
-            if(_escTime >= 1.0f)
-            {
-                OnFinished(false);
-            }
-        }
-        else
-        {
-            if(_escTime > 0.0f)
-                _escTime = 0.0f;
-        }
-    }
-
     bool canMove = ((_state == State::Gameplay && !_countdown) || (_state == State::Menu && !_gameStart) || (_state == State::Finish));
     for(Paddle* p : Pads)
     {
@@ -1001,7 +1022,7 @@ void Game::DrawGame()
     //Nézet beállítások
     glm::mat4 p = glm::perspective(45.0f, ((float)_pong->GetGFX()->GetContextWidth() / (float)_pong->GetGFX()->GetContextHeight()), 1.0f, 150.0f);
     glm::mat4 v = glm::lookAt(glm::vec3(camRenderX * 1.5f + camLookX, 8, camRenderZ * 1.5f), glm::vec3(camLookX,-1,0), glm::vec3(0,1,0));
-    //v = glm::rotate(v, camRotation, glm::vec3(0,1,0));
+    v = glm::rotate(v, camRotation, glm::vec3(0,1,0));
     glm::mat4 pv = p*v;
 
     float lineL = MapSize - wallSize - cornerSize;

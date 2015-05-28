@@ -26,6 +26,8 @@ GFX::GFX(string title, int width, int height, int bpc)
     _glContext = NULL;
     _displayMode = NULL;
 
+    _fullscreen = false;
+
     _currentDisplay = 0;
 }
 
@@ -114,6 +116,17 @@ int GFX::GetContextWidth()
 int GFX::GetContextHeight()
 {
     return _contextHeight;
+}
+
+void GFX::SetFullscreen(bool fs)
+{
+    _fullscreen = fs;
+    SDL_SetWindowFullscreen(_window, (_fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0));
+}
+
+void GFX::ToggleFullscreen()
+{
+    SetFullscreen(!_fullscreen);
 }
 
 GFX::~GFX()

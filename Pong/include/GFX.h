@@ -19,8 +19,12 @@ class GFX
         int GetContextHeight();
 
         void SizeChanged();
+        void SetFullscreen(bool fs);
+        void ToggleFullscreen();
 
     private:
+        bool _fullscreen;
+
         int _bitsPerComponent;
         int _contextWidth;
         int _contextHeight;

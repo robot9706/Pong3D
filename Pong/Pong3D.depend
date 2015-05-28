@@ -563,18 +563,19 @@
 
 1432068207 d:\code_blocks_projects\pong3d\include\sphererenderer.h
 
-1432227173 source:d:\code_blocks_projects\pong3d\pong\main.cpp
+1432828113 source:d:\code_blocks_projects\pong3d\pong\main.cpp
 	<iostream>
 	<Pong3D.h>
 	<fstream>
 	<cstdlib>
 	<time.h>
+	<SoundManager.h>
 
-1432651589 d:\code_blocks_projects\pong3d\pong\include\pong3d.h
+1432828305 d:\code_blocks_projects\pong3d\pong\include\pong3d.h
 	<GFX.h>
 	<Game.h>
 
-1432651472 d:\code_blocks_projects\pong3d\pong\include\gfx.h
+1432828040 d:\code_blocks_projects\pong3d\pong\include\gfx.h
 	<string>
 	<SDL.h>
 
@@ -895,7 +896,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1432651434 d:\code_blocks_projects\pong3d\pong\include\game.h
+1432828135 d:\code_blocks_projects\pong3d\pong\include\game.h
 	<Texture2D.h>
 	<TextureCube.h>
 	<SpriteBatch.h>
@@ -970,7 +971,7 @@
 	<OpenGL/glu.h>
 	<GL/glu.h>
 
-1432651836 source:d:\code_blocks_projects\pong3d\pong\src\game.cpp
+1432828161 source:d:\code_blocks_projects\pong3d\pong\src\game.cpp
 	"Game.h"
 	<iostream>
 	<Pong3D.h>
@@ -1005,7 +1006,7 @@
 
 1431872146 d:\code_blocks_projects\pong3d\pong\include\uvcuberenderer.h
 
-1432239375 source:d:\code_blocks_projects\pong3d\pong\src\gfx.cpp
+1432828057 source:d:\code_blocks_projects\pong3d\pong\src\gfx.cpp
 	"GFX.h"
 	<SDL.h>
 	<SDL_image.h>
@@ -1038,7 +1039,7 @@
 	<glew.h>
 	<Pong3D.h>
 
-1432825449 source:d:\code_blocks_projects\pong3d\pong\src\pong3d.cpp
+1432828319 source:d:\code_blocks_projects\pong3d\pong\src\pong3d.cpp
 	"Pong3D.h"
 	<SDL.h>
 	<glew.h>
@@ -1115,14 +1116,14 @@
 
 1432319990 d:\code_blocks_projects\pong3d\pong\include\datablock.h
 
-1432825459 source:d:\code_blocks_projects\pong3d\pong\src\soundmanager.cpp
+1432826365 source:d:\code_blocks_projects\pong3d\pong\src\soundmanager.cpp
 	"SoundManager.h"
 	<SDL.h>
 	<SDL_mixer.h>
 	<Pong3D.h>
 	<iostream>
 
-1432825366 d:\code_blocks_projects\pong3d\pong\include\soundmanager.h
+1432826038 d:\code_blocks_projects\pong3d\pong\include\soundmanager.h
 	<SDL_mixer.h>
 	<DataBlock.h>
 
