@@ -105,6 +105,7 @@ class Game
 
         bool _fpsButton = false; //Jelzi, hogy valamelyik FPS gomb le van-e nyomva (f1, f2 vagy f3)
         bool _fsButton = false; //F11 fullscreen gomb lenyomása
+        bool _enter = false;
 
         //Menü átlátszóság animáció
         bool _menuFade = false;

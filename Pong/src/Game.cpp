@@ -440,9 +440,22 @@ void Game::LoadTextureMem(Texture2D* tex, DataBlock data)
     }
 }
 
+bool retek = false;
+
 /*====ALAP UPDATE & RENDER======*/
 void Game::Update()
 {
+    if(Keyboard::IsKeyDown(SDL_SCANCODE_I)){
+        if(!retek){
+            retek = true;
+            Powerup* p = new Powerup(0,0.1f,0,PowerupTarget::All,PowerupType::DoubleBall);
+            p->Activate(this, Ballz[0]);
+            delete p;
+        }
+    }
+    else
+        retek = false;
+
     if(Keyboard::IsKeyDown(SDL_SCANCODE_F8))
     {
         for(Ball* &b : Ballz)
@@ -565,7 +578,10 @@ void Game::UpdateMenu(bool board)
 {
     if(board)
     {
-        if(Mouse::LeftPress && Mouse::HitTest(menuX + (menuW / 2) - (_okBTN->Width / 2), menuY + menuH - (_okBTN->Height * 1.5f), _okBTN->Width, _okBTN->Height)){
+        if((Mouse::LeftPress && Mouse::HitTest(menuX + (menuW / 2) - (_okBTN->Width / 2), menuY + menuH - (_okBTN->Height * 1.5f), _okBTN->Width, _okBTN->Height)) || (Keyboard::IsKeyDown(SDL_SCANCODE_RETURN) && !_enter)){
+            if(Keyboard::IsKeyDown(SDL_SCANCODE_RETURN)){
+                _enter = true;
+            }
            _state = State::Menu;
         }
     }
@@ -609,7 +625,23 @@ void Game::UpdateMenu(bool board)
 
             _gameReady = CanGameStart();
 
-            if(_gameReady && Mouse::HitTest(menuX + (menuW / 2) - (_startBTN->Width / 2), menuY + menuH - (_startBTN->Height * 1.5f), _startBTN->Width, _startBTN->Height)){
+            if(_gameReady && (Mouse::HitTest(menuX + (menuW / 2) - (_startBTN->Width / 2), menuY + menuH - (_startBTN->Height * 1.5f), _startBTN->Width, _startBTN->Height) || (Keyboard::IsKeyDown(SDL_SCANCODE_RETURN) && !_enter))){
+                if(Keyboard::IsKeyDown(SDL_SCANCODE_RETURN)){
+                    _enter = true;
+                }
+
+                SetupGame();
+
+                _menuTargetAlpha = 0.0f;
+                _menuFade = true;
+                _gameStart = true;
+            }
+        }
+        else
+        {
+            if(_gameReady && Keyboard::IsKeyDown(SDL_SCANCODE_RETURN) && !_enter){
+                _enter = true;
+
                 SetupGame();
 
                 _menuTargetAlpha = 0.0f;
@@ -642,6 +674,10 @@ void Game::UpdateMenu(bool board)
 
             _gameReady = CanGameStart();
         }
+    }
+
+    if(!Keyboard::IsKeyDown(SDL_SCANCODE_RETURN)){
+        _enter = false;
     }
 }
 
@@ -1339,6 +1375,7 @@ void Game::OnBallRemoved(int lt, int tag)
             _countdown = true;
             _countdownValue = 3.0f;
             SwapButtons = false;
+            BaseBallSpeed = 7.5f;
             for(int x = 0;x<4;x++)
             {
                 Pads[x]->GotoCenter = true;

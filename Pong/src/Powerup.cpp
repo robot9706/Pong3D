@@ -123,7 +123,7 @@ void Powerup::Activate(Game* game, Ball* src)
                     game->Ballz[x]->Speed = Game::BaseBallSpeed;
                     break;
                 case PowerupType::FasterBall:
-                    game->Ballz[x]->Speed = Game::BaseBallSpeed * 2.0f;
+                    game->Ballz[x]->Speed = Game::BaseBallSpeed * 1.6f;
                     break;
             }
         }

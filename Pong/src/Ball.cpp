@@ -192,6 +192,9 @@ void Ball::Render(Game* game)
 
 void Ball::SpawnBall(int p, float ms)
 {
+    if(p < 0 || p > 3)
+        p = 0;
+
     switch(p){
     case 0:
         X = 0.0f;
